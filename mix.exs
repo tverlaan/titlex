@@ -1,14 +1,14 @@
 defmodule Title.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.1.1"
   @url "https://github.com/tverlaan/titlex"
 
   def project do
     [
       app: :titlex,
       version: @version,
-      elixir: "~> 1.11",
+      elixir: "~> 1.10",
       name: "Title",
       description:
         "Capitalize your titles like a professional! A title capitalization library for Elixir.",
