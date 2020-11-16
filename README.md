@@ -1,6 +1,6 @@
 # Title
 
-[![Hex.pm Version](https://img.shields.io/hexpm/v/titlex.svg?style=flat)](https://hex.pm/packages/titlex) [![CI Status](https://github.com/tverlaan/titlex/workflows/CI/badge.svg)]
+[![Hex.pm Version](https://img.shields.io/hexpm/v/titlex.svg?style=flat)](https://hex.pm/packages/titlex) ![CI Status](https://github.com/tverlaan/titlex/workflows/CI/badge.svg)
 
 <!-- MDOC !-->
 
