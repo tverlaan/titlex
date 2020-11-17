@@ -75,4 +75,13 @@ defmodule TitleTest do
                "Hello' What 'AbOUt THE World?"
     end
   end
+
+  describe "title with non-default style" do
+    test "wikipeda" do
+      assert Title.capitalize("The WIKIPEDIA style has *underneath* capitalized",
+               style: :wikipedia
+             ) ==
+               "The Wikipedia Style Has *Underneath* Capitalized"
+    end
+  end
 end
