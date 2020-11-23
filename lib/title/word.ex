@@ -109,13 +109,8 @@ defmodule Title.Word do
   defp do_capitalize(word, _, _) when word in [" ", "-"], do: word
 
   defp do_capitalize(word, %{style: style, custom: custom}, first_or_last) do
-    re_word =
-      ~r/[a-zA-Z]+/
-      |> Regex.scan(word)
-      |> Enum.join()
-      |> Regex.compile!("i")
-
-    with :not_custom <- customize(word, re_word, custom),
+    with %Regex{} = re_word <- compile_re(word),
+         :not_custom <- customize(word, re_word, custom),
          :not_downcase <- downcase(word, re_word, style, not first_or_last),
          {start, length} <- alpha_index(word) do
       binary_part(word, 0, start) <>
@@ -123,6 +118,16 @@ defmodule Title.Word do
         String.downcase(binary_part(word, start + length, byte_size(word) - start - length))
     else
       word -> word
+    end
+  end
+
+  defp compile_re(word) do
+    ~r/[a-zA-Z]+/
+    |> Regex.scan(word)
+    |> Enum.join()
+    |> case do
+      "" -> word
+      alpha -> Regex.compile!(alpha, "i")
     end
   end
 
@@ -142,9 +147,7 @@ defmodule Title.Word do
   end
 
   defp alpha_index(word) do
-    case Regex.scan(~r/[a-zA-Z]+/, word, return: :index) do
-      [[index] | _] -> index
-      _ -> word
-    end
+    [[index] | _] = Regex.scan(~r/[a-zA-Z]+/, word, return: :index)
+    index
   end
 end

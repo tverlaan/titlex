@@ -48,6 +48,12 @@ defmodule TitleTest do
     end
   end
 
+  describe "title with asterisk between words" do
+    test "single quote on middle word" do
+      assert Title.capitalize("hello * awesome * world") == "Hello * Awesome * World"
+    end
+  end
+
   describe "title with custom word(s)" do
     test "capitalizes a short sentence with a custom word" do
       assert Title.capitalize("hello world", custom: ["WORLD"]) == "Hello WORLD"
